@@ -8,11 +8,17 @@ This repository is the official implementation of [CGS-GAN 3D Consistent Gaussia
 
 Install the conda environment and load the Gaussian splatting renderer:
 
-Change the line `pytorch-cuda=11.8` in environment.yml to the installed cuda version on your machine. Otherwise diff-gaussian-rasterization fails to install. 
-Any version >=11.8 should work.
 ```sh
-conda env create -f environment.yml
+conda create --name cgsgan -y python=3.10
 conda activate cgsgan
+
+conda install -c "nvidia/label/cuda-11.7.1" cuda-toolkit ninja
+conda install -c conda-forge cudatoolkit=11.7 cudatoolkit-dev=11.7
+
+pip install torch==2.0.1 torchvision --index-url https://download.pytorch.org/whl/cu117
+
+pip install numpy==1.22.3 click pillow scipy requests==2.26.0 tqdm==4.62.2 matplotlib==3.4.2 imageio==2.9.0 
+pip install imageio-ffmpeg==0.4.3 pyspng psutil tensorboard opencv-python plyfile
 
 git clone --recursive https://github.com/ashawkey/diff-gaussian-rasterization
 pip install ./diff-gaussian-rasterization
